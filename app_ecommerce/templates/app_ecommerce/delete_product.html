@@ -1,0 +1,44 @@
+{% extends 'app_ecommerce/base.html' %}
+<!-- load static -->
+{% load static %}
+
+<!-- body -->
+{% block content %}
+<h1 class="text-2xl font-bold m-10">😒 Delete Product</h1>
+<p class="text-2xl font-bold m-10">
+  Are you sure you want to delete this product?
+</p>
+<form action="" method="POST" class="w-1/3 bg-white shadow-md m-10 px-8 py-6">
+  {% csrf_token %}
+  <div class="mb-4">
+    <label for="name" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Name</label
+    >
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder="Name"
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"
+      value="{{product.name}}"
+      disabled="true"
+    />
+  </div>
+  <div class="mb-4">
+    <img src="{{product.image.url}}" alt="" class="w-45 h-45" />
+  </div>
+  <div class="mb-4 flex justify-between">
+    <input
+      type="submit"
+      value="Confirm Delete"
+      class="bg-red-600 text-white px-5 py-2"
+      style="cursor: pointer"
+    />
+    <a
+      href="{% url 'app_ecommerce:product' %}"
+      class="bg-green-500 px-5 py-2 text-white"
+      >Cancel</a
+    >
+  </div>
+</form>
+{% endblock content %}

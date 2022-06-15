@@ -62,3 +62,22 @@ def update_product(request, product_id):
             )
         except:
             return HttpResponse("Product not found.")
+
+
+def delete_product(request, product_id):
+    try:
+        product = Product.objects.get(id=product_id)
+
+        if request.method == "POST":
+            product.delete()
+            return redirect("/products/")
+
+        else:
+            context = {"product": product}
+            return render(
+                request=request,
+                template_name="app_ecommerce/delete_product.html",
+                context=context,
+            )
+    except:
+        return HttpResponse("Product not found.")
