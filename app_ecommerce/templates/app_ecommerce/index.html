@@ -10,7 +10,11 @@
         <h2>Products</h2>
         <ul>
             {% for product in products %}
-            <li>{{ product }}</li>
+            <li>
+                <a href="{% url 'app_ecommerce:product_detail' product.id %}">
+                    {{ product }}
+                </a>
+            </li>
             {% endfor %}
         </ul>
     </body>
