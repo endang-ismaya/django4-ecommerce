@@ -1,0 +1,77 @@
+{% extends 'app_ecommerce/base.html' %}
+<!-- load static -->
+{% load static %}
+
+<!-- body -->
+{% block content %}
+
+<h1 class="text-2xl font-bold m-10">✏️ Update Product</h1>
+<form
+  action=""
+  method="POST"
+  enctype="multipart/form-data"
+  class="w-3/5 bg-white shadow-md m-10 px-8 py-6"
+>
+  {% csrf_token %}
+  <div class="mb-4">
+    <label for="name" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Name</label
+    >
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder="Name"
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"
+      value="{{product.name}}"
+    />
+  </div>
+  <div class="mb-4">
+    <label for="price" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Price</label
+    >
+    <input
+      type="text"
+      name="price"
+      id="price"
+      placeholder="Price"
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"
+      value="{{product.price}}"
+    />
+  </div>
+  <div class="mb-4">
+    <label for="desc" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Description</label
+    >
+    <input
+      type="text"
+      name="desc"
+      id="desc"
+      placeholder="Description"
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"
+      value="{{product.desc}}"
+    />
+  </div>
+  <div class="mb-4">
+    <img src="{{product.image.url}}" alt="" class="w-20 h-20" />
+    <label for="upload" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Image</label
+    >
+    <input
+      type="file"
+      accept="image/*"
+      name="upload"
+      id="upload"
+      class="py-2 mr-10 text-gray-700"
+    />
+  </div>
+  <div class="mb-4">
+    <input
+      type="submit"
+      value="Update Product"
+      class="bg-green-600 text-white px-5 py-2"
+      style="cursor: pointer"
+    />
+  </div>
+</form>
+{% endblock content %}
