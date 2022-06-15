@@ -23,3 +23,17 @@ def product_detail(request, product_id):
         )
     except:
         return HttpResponse("Product not found.")
+
+
+def add_product(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        desc = request.POST.get("desc")
+        image = request.FILES["upload"]
+
+        product: Product = Product(name=name, price=price, desc=desc, image=image)
+
+        product.save()
+
+    return render(request, "app_ecommerce/add_product.html")
