@@ -32,15 +32,16 @@
   {% for product in products %}
 
   <a href="{% url 'app_ecommerce:product_detail' product.id %}">
-    <div
-      class="rounded overflow-hidden shadow-lg p-10 m-5"
-      style="height: 35rem"
-    >
-      <img src="{{ product.image.url }}" alt="" class="w-full" />
+    <div class="rounded overflow-hidden shadow-lg p-10 m-5">
+      <img src="{{ product.image.url }}" alt="" width="500px" />
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ product.name }}</div>
         <div class="font-bold text-xl text-green-500 mb-2">
           ${{ product.price }}
+        </div>
+        <div class="font-bold mb-2">
+          Posted by:
+          <span class="text-indigo-500">{{product.seller_name}}</span>
         </div>
         <p class="text-gray-700 text-base">{{product.desc}}</p>
       </div>

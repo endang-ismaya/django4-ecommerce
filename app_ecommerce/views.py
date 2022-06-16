@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Product
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -25,28 +26,40 @@ def product_detail(request, product_id):
         return HttpResponse("Product not found.")
 
 
+@login_required
 def add_product(request):
     if request.method == "POST":
         name = request.POST.get("name")
         price = request.POST.get("price")
         desc = request.POST.get("desc")
         image = request.FILES["upload"]
+        seller_name = request.user
 
-        product: Product = Product(name=name, price=price, desc=desc, image=image)
+        product: Product = Product(
+            name=name, price=price, desc=desc, image=image, seller_name=seller_name
+        )
 
         product.save()
 
     return render(request, "app_ecommerce/add_product.html")
 
 
+@login_required
 def update_product(request, product_id):
     if request.method == "POST":
         name = request.POST.get("name")
         price = request.POST.get("price")
         desc = request.POST.get("desc")
-        image = request.FILES["upload"]
+        image = request.FILES.get("upload", None)
 
-        product: Product = Product(name=name, price=price, desc=desc, image=image)
+        product: Product = Product.objects.get(id=product_id)
+        product.name = name
+        product.price = price
+        product.desc = desc
+
+        if image is not None:
+            print(image)
+            product.image = image
 
         product.save()
 
