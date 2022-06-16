@@ -25,3 +25,7 @@ def register(request):
 @login_required
 def profile(request):
     return render(request, "app_users/profile.html")
+
+
+def create_profile(request):
+    return render(request, "app_users/create_profile.html")

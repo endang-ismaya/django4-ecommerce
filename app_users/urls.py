@@ -17,4 +17,5 @@ urlpatterns = [
         name="logout",
     ),
     path("profile/", views.profile, name="profile"),
+    path("create-profile/", views.create_profile, name="create_profile"),
 ]
