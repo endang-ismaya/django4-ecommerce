@@ -130,3 +130,4 @@ MEDIA_URL = "/media/"
 
 # Auth
 LOGIN_REDIRECT_URL = "app_ecommerce:products"
+LOGIN_URL = "app_users:login"
