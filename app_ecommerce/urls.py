@@ -5,7 +5,7 @@ app_name = "app_ecommerce"
 
 urlpatterns = [
     path("", views.index),
-    path("products/", views.products, name="product"),
+    path("products/", views.products, name="products"),
     path("products/<int:product_id>", views.product_detail, name="product_detail"),
     path("products/add/", views.add_product, name="add_product"),
     path(
