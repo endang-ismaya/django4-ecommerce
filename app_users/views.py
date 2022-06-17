@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .forms import NewUserForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from django.contrib.auth.models import User
 
 # Create your views here.
 def register(request):
@@ -38,3 +39,9 @@ def create_profile(request):
         profile.save()
 
     return render(request, "app_users/create_profile.html")
+
+
+def seller_profile(request, user_id):
+    seller = User.objects.get(id=user_id)
+    context = {"seller": seller}
+    return render(request, "app_users/seller_profile.html", context)

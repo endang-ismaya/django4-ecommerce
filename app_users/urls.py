@@ -18,4 +18,5 @@ urlpatterns = [
     ),
     path("profile/", views.profile, name="profile"),
     path("create-profile/", views.create_profile, name="create_profile"),
+    path("seller-profile/<int:user_id>/", views.seller_profile, name="seller_profile"),
 ]
