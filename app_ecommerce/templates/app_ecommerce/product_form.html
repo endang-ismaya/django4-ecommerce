@@ -1,0 +1,71 @@
+{% extends 'app_ecommerce/base.html' %}
+<!-- load static -->
+{% load static %}
+
+<!-- body -->
+{% block content %}
+
+<h1 class="text-2xl font-bold m-10">➕ Add Product</h1>
+<form
+  action=""
+  method="POST"
+  enctype="multipart/form-data"
+  class="w-3/5 bg-white shadow-md m-10 px-8 py-6"
+>
+  {% csrf_token %}
+  <div class="mb-4">
+    <label for="name" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Name</label
+    >
+    <div
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 w-1/4"
+    >
+      {{form.name}}
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="price" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Price</label
+    >
+    <div
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 w-1/4"
+    >
+      {{form.price}}
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="desc" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Description</label
+    >
+    <div
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 w-1/4"
+    >
+      {{form.desc}}
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="upload" class="block text-bg-gray-700 text-sm font-bold mb-2"
+      >Product Image</label
+    >
+    <div
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 w-1/4"
+    >
+      {{form.image}}
+    </div>
+  </div>
+  <div class="mb-4">
+    <div
+      class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 w-1/4 hidden"
+    >
+      {{form.seller_name}}
+    </div>
+  </div>
+  <div class="mb-4">
+    <input
+      type="submit"
+      value="Add Product"
+      class="bg-green-600 text-white px-5 py-2"
+    />
+  </div>
+</form>
+{% endblock content %}

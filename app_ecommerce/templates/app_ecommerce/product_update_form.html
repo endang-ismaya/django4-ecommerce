@@ -1,0 +1,15 @@
+{% extends 'app_ecommerce/base.html' %}
+
+<!-- content start -->
+{% block content %}
+<!-- content-->
+<form action="" method="post" enctype="multipart/form-data">
+  <!-- content-->
+  {% csrf_token %}
+  <!-- content-->
+  {{ form.as_p}}
+  <!-- content-->
+  <input type="submit" value="Update" />
+</form>
+<!-- content end -->
+{% endblock content %}

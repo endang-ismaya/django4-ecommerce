@@ -2,28 +2,42 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView
 
 # Create your views here.
 def index(request):
     return HttpResponse("Hello World")
 
 
-def products(request):
-    products = Product.objects.all()
-    context = {"products": products}
-    return render(request, "app_ecommerce/index.html", context=context)
+# def products(request):
+#     products = Product.objects.all()
+#     context = {"products": products}
+#     return render(request, "app_ecommerce/index.html", context=context)
 
 
-def product_detail(request, product_id):
+class ProductListView(ListView):
+    model = Product
+    template_name: str = "app_ecommerce/index.html"
+    context_object_name: list[str] = "products"
 
-    try:
-        product = Product.objects.get(id=product_id)
-        context = {"product": product}
-        return render(
-            request=request, template_name="app_ecommerce/detail.html", context=context
-        )
-    except:
-        return HttpResponse("Product not found.")
+
+# def product_detail(request, product_id):
+
+#     try:
+#         product = Product.objects.get(id=product_id)
+#         context = {"product": product}
+#         return render(
+#             request=request, template_name="app_ecommerce/detail.html", context=context
+#         )
+#     except:
+#         return HttpResponse("Product not found.")
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name: str = "app_ecommerce/detail.html"
+    context_object_name: dict[str] = "product"
 
 
 @login_required
@@ -42,6 +56,11 @@ def add_product(request):
         product.save()
 
     return render(request, "app_ecommerce/add_product.html")
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ["name", "price", "desc", "image", "seller_name"]
 
 
 @login_required
@@ -75,6 +94,12 @@ def update_product(request, product_id):
             )
         except:
             return HttpResponse("Product not found.")
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ["name", "price", "desc", "image", "seller_name"]
+    template_name_suffix: str = "_update_form"
 
 
 @login_required
