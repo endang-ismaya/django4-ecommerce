@@ -77,7 +77,9 @@ def update_product(request, product_id):
             return HttpResponse("Product not found.")
 
 
+@login_required
 def delete_product(request, product_id):
+    # print(f"product_id: {product_id}")
     try:
         product = Product.objects.get(id=product_id)
 
@@ -87,10 +89,19 @@ def delete_product(request, product_id):
 
         else:
             context = {"product": product}
+            print(product)
             return render(
-                request=request,
-                template_name="app_ecommerce/delete_product.html",
-                context=context,
+                request,
+                "app_ecommerce/delete_product.html",
+                context,
             )
+
     except:
-        return HttpResponse("Product not found.")
+        return HttpResponse(f"Product not found for id={product_id}")
+
+
+@login_required
+def my_listings(request):
+    products = Product.objects.filter(seller_name=request.user)
+    context = {"products": products}
+    return render(request, "app_ecommerce/mylistings.html", context)
