@@ -36,6 +36,13 @@
       Login
     </button>
   </form>
+
+  <div class="m-10">
+    Do not have an account?
+    <a href="{% url 'app_users:register' %}" class="text-indigo-500"
+      >Register</a
+    >
+  </div>
 </div>
 <!-- content -->
 {% endblock content %}
