@@ -1,0 +1,17 @@
+{% extends 'app_ecommerce/base.html' %}
+
+<!-- content start -->
+{% block content %}
+<!-- content-->
+<form action="" method="post">
+  <!-- content-->
+  {% csrf_token %}
+  <p>Are you sure you want to delete "{{ object }}" ?</p>
+  {{form}}
+  <!-- content-->
+  {{ form.as_p}}
+  <!-- content-->
+  <input type="submit" value="Confirm" />
+</form>
+<!-- content end -->
+{% endblock content %}

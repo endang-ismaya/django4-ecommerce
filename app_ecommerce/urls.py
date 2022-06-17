@@ -18,7 +18,7 @@ urlpatterns = [
         name="update_product",
     ),
     path(
-        "products/delete/<int:product_id>", views.delete_product, name="delete_product"
+        "products/delete/<int:pk>", views.ProductDelete.as_view(), name="delete_product"
     ),
     path("products/mylistings", views.my_listings, name="mylistings"),
 ]
