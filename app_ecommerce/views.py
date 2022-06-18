@@ -5,16 +5,26 @@ from .models import Product
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
     return HttpResponse("Hello World")
 
 
-# def products(request):
-#     products = Product.objects.all()
-#     context = {"products": products}
-#     return render(request, "app_ecommerce/index.html", context=context)
+def products(request):
+    page_obj = products = Product.objects.all()
+    product_name = request.GET.get("product_name", None)
+
+    if product_name is not None:
+        page_obj = products.filter(name__icontains=product_name)
+
+    paginator = Paginator(page_obj, 3)
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+    context = {"products": page_obj, "page_obj": page_obj}
+
+    return render(request, "app_ecommerce/index.html", context=context)
 
 
 class ProductListView(ListView):
