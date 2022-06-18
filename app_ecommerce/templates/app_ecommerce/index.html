@@ -50,4 +50,42 @@
   {% endfor %}
 </div>
 
+<!-- Pagination start-->
+<div class="pagination flex justify-center items-center">
+  <span>
+    {% if page_obj.has_previous %}
+    <a
+      href="?page=1"
+      class="text-sm font-medium border py-2 px-3 items-center inline-flex relative text-green-500 border-green-500 z-10 m-2"
+      >First</a
+    >
+    <a
+      href="?page={{page_obj.previous_page_number}}"
+      class="text-sm font-medium border py-2 px-3 items-center inline-flex relative text-green-500 border-green-500 z-10 mr-2"
+      >Previous</a
+    >
+    {% endif %}
+    <!-- page_obj -->
+    <span
+      class="text-sm font-medium border py-2 px-3 items-center inline-flex relative text-blue-500 border-blue-500 z-10"
+    >
+      Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+    </span>
+    <!-- page_obj -->
+    {% if page_obj.has_next %}
+    <a
+      href="?page={{page_obj.next_page_number}}"
+      class="text-sm font-medium border py-2 px-3 items-center inline-flex relative text-green-500 border-green-500 z-10 ml-2"
+      >Next</a
+    >
+    <a
+      href="?page={{page_obj.paginator.num_pages}}"
+      class="text-sm font-medium border py-2 px-3 items-center inline-flex relative text-green-500 border-green-500 z-10 m-2"
+      >Last</a
+    >
+    {% endif %}
+  </span>
+</div>
+<!-- Pagination end-->
+
 {% endblock content %}

@@ -21,6 +21,7 @@ class ProductListView(ListView):
     model = Product
     template_name: str = "app_ecommerce/index.html"
     context_object_name: list[str] = "products"
+    paginate_by: int = 3
 
 
 # def product_detail(request, product_id):
